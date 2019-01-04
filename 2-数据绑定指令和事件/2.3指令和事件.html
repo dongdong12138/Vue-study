@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令和事件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        .transRed { background: red; }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--v-text指令-->
+    {{ apple }} <br>
+    <span v-text="apple"></span> <br>
+
+    <!--v-html指令：解析html-->
+    <p v-html="banana"></p> <br>
+
+    <!--v-bind指令：绑定活的属性-->
+    <p v-bind:class="className">董董</p>
+    <!--语法糖-->
+    <p :class="className">浩浩</p>
+
+    <!--v-on指令：绑定事件监听器-->
+    <button v-on:dblclick="count">click me</button>
+    <!--语法糖-->
+    <button @dblclick="count">click me</button>
+    <span>{{ num }}</span>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            apple: '苹果',
+            banana: '<span style="color: yellow;">香蕉</span>',
+            className: 'transRed',
+            num: 0
+        },
+        methods: {
+            count: function () {
+                this.num += 1
+            }
+        }
+    })
+</script>
+</body>
+</html>

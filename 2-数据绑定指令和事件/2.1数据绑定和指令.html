@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据绑定和指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--文本插值的用法-->
+        {{ msg }} <br>
+        {{ 6+6 }} ---可以进行简单的运算<br>
+        {{ 6 > 3 ? msg : a }} ---可以用三元运算符 <br>
+        <!--{{ if (6 > 3) {alert('哈哈')} }} -&#45;&#45;注意：文本插值的形式，其中不能书写表达式，支持单个表达式-->
+        <!--{{ var a = 6; }} -&#45;&#45;也是多行表达式 -&#45;&#45;var a; a = 6;-->
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',    // 用于指定页面中已经存在的DOM元素，挂载到DOM中，也可以是css
+            data: {        // 可以申明应用内需要双向绑定的数据
+                msg: 'vue学习开始了',
+                a: 2
+            },
+            created: function () {
+                alert('我是vue实例，创建完成。还未挂载到DOM')
+            },
+            mounted: function () {
+                alert('我是vue实例，已经挂载到DOM')
+            }
+        })
+
+        // 访问vue实例的属性
+        console.log(app.$el)
+        console.log( app.$data )
+
+        // 访问data中的属性
+        console.log( app.msg );
+        console.log( app.a );
+    </script>
+</body>
+</html>
