@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示姓名</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    显示全名：------ {{ fullName }}
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            firstName: '董',
+            lastName: '浩'
+        },
+        computed: {
+            // 计算属性的默认用法是 getter 函数
+//            fullName: function () {
+//                return this.firstName + this.lastName
+//            }
+            fullName: {
+                get: function () {
+                    return this.firstName + this.lastName
+                },
+                set: function (newValue) {
+                    var names = newValue.split('，')  // 分割成数组，这里要注意使用中文逗号和英文逗号的区别
+                    this.firstName = names[0]
+                    this.lastName = names[1]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
