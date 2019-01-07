@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<strong>绑定内联样式(对象语法)：键代表属性，值代表属性值</strong>
+<strong>
+    切记：vue中只要是大写字母，都会转换成-加小写，如：<br>
+    fontSize  会被转换成  font-size <br>
+    dsfASDghG  会被转换成  dsf-s-s-dgh-g <br>
+</strong>
+<blockquote>
+    <div id="app">
+        <p v-bind:style="{'color': color, 'fontSize': fontSize}">我是董浩</p>
+    </div>
+</blockquote>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            color: 'red',
+            fontSize: '30px'
+        }
+    })
+</script>
+</body>
+</html>

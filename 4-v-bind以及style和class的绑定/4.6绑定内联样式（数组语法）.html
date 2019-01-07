@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<strong>绑定内联样式(数组语法)：</strong>
+<div id="app">
+    <p :style="[styleA, styleB]">我是董哼哼</p>
+</div>
+
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            styleA: {color: 'green', fontWeight: 'bold'},
+            styleB: {fontSize: '40px'}
+        }
+    })
+</script>
+</body>
+</html>

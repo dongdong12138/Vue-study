@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        div { width: 100px; height: 100px; }
+        .active { background: green; }
+        .error { border: 5px solid red; }
+    </style>
+</head>
+<body>
+<strong>绑定class数组语法：数组中的成员直接对应类名</strong>
+<blockquote id="app">
+    <div :class="[activeClass, errorClass]"></div>
+</blockquote>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            activeClass: 'active',
+            errorClass: 'error'
+        }
+    })
+</script>
+</body>
+</html>

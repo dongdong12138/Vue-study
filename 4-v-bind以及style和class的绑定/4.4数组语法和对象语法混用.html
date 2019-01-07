@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        div { width: 100px; height: 100px; }
+        .active { background: green; }
+        .error { border: 5px solid red; }
+    </style>
+</head>
+<body>
+<blockquote id="app">
+    <div :class="[errorClass, {active: isActive}]"></div>
+</blockquote>
+
+<script>
+    // 需求：error类永远存在，isActive类点击消失或显示
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            errorClass: 'error'
+        }
+    })
+</script>
+</body>
+</html>

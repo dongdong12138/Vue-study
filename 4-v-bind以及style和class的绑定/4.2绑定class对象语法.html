@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        div { width: 100px; height: 100px; }
+        div.red { background: red; }
+        div.blue { border: 5px solid blue; }
+
+        .btnRed { background: red; }
+        .btnBlue { background: blue; }
+    </style>
+</head>
+<body>
+<strong>绑定class</strong>
+<div id="app">
+    <p>---绑定class对象语法：对象的键是类名，值是布尔值</p>
+    <div v-bind:class="{red: isRed, blue: isBlue}"></div>
+    <input type="button" value="click me" :class="{btnRed: isRedBack, btnBlue: isBlueBack}" @click="change"> <br>
+    <input type="button" value="click me" :class="changeColor" @click="change">
+</div>
+
+<script>
+    // 需求：点击一个按钮，来回切换背景颜色为红，蓝
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isRed: true,
+            isBlue: true,
+            isRedBack: true,
+            isBlueBack: false
+        },
+        // 用 methods 实现
+        methods: {
+            change: function () {
+                var _isRedBack = this.isRedBack
+                this.isRedBack = this.isBlueBack
+                this.isBlueBack = _isRedBack
+            }
+        },
+        // 用计算属性实现绑定属性
+        computed: {
+            changeColor: function () {
+                return { btnRed: this.isRedBack, btnBlue: this.isBlueBack }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
