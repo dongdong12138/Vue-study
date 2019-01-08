@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组更新</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="study in arr">{{ study }}</li>
+    </ul>
+    <button @click="sortArr">sort</button>
+    <button @click="reverseArr">reverse</button>
+    <hr>
+    <button @click="changeItem">改变指定项</button>
+    <button @click="changeLength">改变长度</button>
+
+    <hr>
+
+    返回字符串中含有“oo”的项：<br>
+    {{ matchOO }}
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            arr: ['book', 'pen', 'pencil']
+        },
+        computed: {
+            matchOO: function () {
+                return this.arr.filter(function (book) {  // 参数代表要过滤的每一项
+                    return book.match(/oo/)
+                })
+            }
+        },
+        methods: {
+            sortArr: function () {
+                this.arr.sort(function (a, b) {
+                    return a.length - b.length  // 从小到大排
+                })
+            },
+            reverseArr: function () {
+                this.arr.reverse()
+            },
+            // 改变数组的制定项
+            changeItem: function () {
+                this.arr[0] = 'ruler'
+            },
+            // 改变数组的长度
+            changeLength: function () {
+                this.arr.length = 10
+            }
+        }
+    })
+
+    // 改变Vue的第一项
+    Vue.set(app.arr, 1, 'car')
+</script>
+</body>
+</html>

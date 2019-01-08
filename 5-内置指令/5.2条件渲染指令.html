@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    v-if: 后接等号，等号后的内容必须是布尔值 <br>
+    <p v-if="6 < 3">{{ apple }}</p>
+    <p v-else-if="9 < 4">{{ pineapple }}</p>
+    <p v-else>{{ banana }}</p>
+
+    <hr>
+
+    v-show: 显现与否取决于布尔值 <br>
+    <p v-show="9 > 5">apple</p>
+
+    <hr>
+
+    v-if 与 v-show 的比较：<br>
+    v-if: 实时渲染，在页面中显示就渲染，不显示就移除
+    v-show: 永远存在在页面中，只是改变了css的display属性
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            apple: 'apple',
+            banana: 'banana',
+            pineapple: 'pineapple'
+        }
+    })
+</script>
+</body>
+</html>

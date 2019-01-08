@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if的实例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    v-for的用法：v-for一定是要写在遍历的元素上，v-for后面接等号，类似于item in items <br>
+    遍历多个对象，一定是遍历的数组中的多个对象 <br>
+    (1) 遍历多个对象： <br>
+    学好Vue的方法是：
+    <ul>
+        <li v-for="vueMth in vueMethods">{{ vueMth.name }}</li>
+    </ul>
+
+    带索引的写法：括号的第一个变量，代表item，第二个代表index<br>
+    <ul>
+        <li v-for="(vueMth, index) in vueMethods">{{ index }}---{{ vueMth.name }}</li>
+    </ul>
+
+    <hr>
+
+    (2) 遍历一个对象的多个属性 <br>
+    <ul>
+        <li v-for="value in nvshen">{{ value }}</li>
+    </ul>
+
+    拿到 value, key, index 的写法：v-k-i <br>
+    <ul>
+        <li v-for="(value, key, index) in nvshen">{{ index }}---{{ key }}---{{ value }}</li>
+    </ul>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            vueMethods: [
+                {name: '多思考'},
+                {name: '勤动手'},
+                {name: '爱问人'}
+            ],
+            nvshen: {
+                girl1: '梁静茹',
+                girl2: '郭静',
+                girl3: '张碧晨'
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修饰符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    stop用法：阻止冒泡<br>
+    <div @click="divClick" style="width: 100px; height: 100px; background: greenyellow;">
+        <button @click.stop="btnClick">click me</button>
+    </div>
+
+    <hr>
+
+    prevent用法：提交事件并且不重载页面 <br>
+    每次提交表单都会重载页面
+    <form @submit.prevent="handle" action="">
+        <button type="submit">提交表单</button>
+    </form>
+
+    <hr>
+
+    self用法：只是作用在元素本身而非子元素的时候调用 <br>
+    <div @click.self="divClick" style="width: 100px; height: 100px; background: greenyellow;">
+        <button @click="btnClick">click me</button>
+    </div>
+
+    <hr>
+
+    once用法：<br>
+    <button @click="onceMethod">执行无限次</button>
+    <button @click.once="onceMethod">执行一次</button>
+
+    <hr>
+
+    监听键盘事件：<br>
+    <input type="text" @keyup.13="submit">
+    <input type="text" @keyup.enter="submit">
+
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+        },
+        computed: {
+
+        },
+        methods: {
+            divClick: function () {
+                alert('div被点击了')
+            },
+            btnClick: function () {
+                alert('btn被点击了')
+            },
+            handle: function () {
+                alert('我不重载，页面也不刷新了')
+            },
+            onceMethod: function () {
+                alert('执行多少次了？')
+            },
+            submit: function () {
+                alert('哼哼哈嘿')
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
