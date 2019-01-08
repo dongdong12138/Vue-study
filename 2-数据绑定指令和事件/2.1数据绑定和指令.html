@@ -11,7 +11,7 @@
         {{ msg }} <br>
         {{ 6+6 }} ---可以进行简单的运算<br>
         {{ 6 > 3 ? msg : a }} ---可以用三元运算符 <br>
-        <!--{{ if (6 > 3) {alert('哈哈')} }} -&#45;&#45;注意：文本插值的形式，其中不能书写表达式，支持单个表达式-->
+        <!--{{ if (6 > 3) {alert('哈哈')} } } -&#45;&#45;注意：文本插值的形式，其中不能书写表达式，支持单个表达式-->
         <!--{{ var a = 6; }} -&#45;&#45;也是多行表达式 -&#45;&#45;var a; a = 6;-->
     </div>
 
@@ -36,8 +36,8 @@
         console.log( app.$data )
 
         // 访问data中的属性
-        console.log( app.msg );
-        console.log( app.a );
+        console.log( app.msg )
+        console.log( app.a )
     </script>
 </body>
 </html>
