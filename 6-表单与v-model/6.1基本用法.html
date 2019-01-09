@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本用法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" style="margin-bottom: 300px;">
+    v-model用法： <br>
+
+    <hr>
+
+    input 和 textarea 的用法：<br>
+    <input type="text" v-model="value"> {{ value }} <br><br>
+    <textarea name="" id="" cols="30" rows="10" v-model="msg">
+        我是初始化的值 <br>
+    </textarea> {{ msg }}
+
+    <hr>
+
+    单选框用法：<br>
+    单个单选框：用 v-bind ------ <input type="radio" v-bind:checked="oneRadio"> <br>
+    单选框用 v-model 不生效：<br>
+    单个单选框：用 v-model------ <input type="radio" v-model="oneRadio"> <br>
+    多个单选框：v-model 绑定的是选中的那个单选框的value值<br>
+        苹果：<input type="radio" name="fruits" value="apple" v-model="checkFruit"><br>
+        桃子：<input type="radio" name="fruits" value="peach" v-model="checkFruit"><br>
+        西瓜：<input type="radio" name="fruits" value="watermelon" v-model="checkFruit"><br>
+        ------ {{ checkFruit }}
+
+    <hr>
+
+    复选框用法：<br>
+    单个复选框：用 v-bind ------ <input type="checkbox" v-bind:checked="oneRadio">
+    单个复选框：用 v-model ----- <input type="checkbox" v-model="oneRadio"> <br>
+    多个复选框：<br>
+    如果绑定的是数组，v-model就与选中的复选框的 value 相关<br>
+    如果绑定的是字符串，v-model就与选中的复选框的 checked 的布尔值相关<br>
+        苹果：<input type="checkbox" name="fruits" value="apple" v-model="checkFruits">
+        桃子：<input type="checkbox" name="fruits" value="peach" v-model="checkFruits">
+        西瓜：<input type="checkbox" name="fruits" value="watermelon" v-model="checkFruits"> <br>
+        ------选中了：{{ checkFruits }}
+
+    <hr>
+
+    下拉框用法：<br>
+    单选的下拉框：<br>
+    <select name="fruits" v-model="checkFruit">
+        <option value="apple">苹果</option>
+        <option value="peach">桃子</option>
+        <option value="watermelon">西瓜</option>
+    </select> ------ {{ checkFruit }}
+    <br><br>
+    多选的下拉框：<br>
+    <select name="fruits" v-model="checkFruits" multiple>
+        <option value="apple">苹果</option>
+        <option value="peach">桃子</option>
+        <option value="watermelon">西瓜</option>
+    </select> ------ {{ checkFruits }}
+
+    <hr>
+
+    绑定值：<br>
+    单选按钮：<br>
+    <input type="radio" v-model="picked" v-bind:value="value"> --- {{ picked }} <br>
+    复选框：<br>
+    需求：选中的 value 和不选中的 value 不一样 <br>
+    <input type="checkbox" v-model="toggle" :true-value="value1" :false-value="value2"> <br>
+    {{ toggle }} <br>
+    被选中：{{ toggle === value1 }} <br>
+    未被选中：{{ toggle === value2 }} <br><br>
+    下拉框：<br>
+    <select v-model="valueSelect">
+        <option :value="{value: 'apple'}">苹果</option>
+        <option :value="{value: 'peach'}">桃子</option>
+        <option :value="{value: 'watermelon'}">西瓜</option>
+    </select> ------ {{ typeof valueSelect }} --- {{ valueSelect.value }}
+
+    <hr>
+
+    修饰符：<br>
+    lazy: <br>
+    <input type="text" v-model="inputString"> ------ {{ inputString }} <br>
+    <input type="text" v-model.lazy="lazyString"> ------ {{ lazyString }} <br>
+
+    number: <br>
+    <input type="text" v-model="isString"> --- {{ typeof isString }} <br>
+    <input type="text" v-model.number="isNumber"> --- {{ typeof isNumber }} <br>
+    
+    trim: <br>
+    <input type="text" v-model="inputString"> --- {{ inputString.split('').length }} <br>
+    <input type="text" v-model.trim="trimString"> --- {{ trimString.split('').length }}
+
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            value: '111',
+            msg: '',
+            oneRadio: true,
+            checkFruit: 'apple',
+            checkFruits: ['apple', 'peach'],
+            picked: true,
+            toggle: true,
+            value1: '我被选中了',
+            value2: '我没被选中',
+            valueSelect: '',
+            inputString: '',
+            lazyString: '',
+            isString: '',
+            isNumber: '',
+            inputString: '',
+            trimString: ''
+        }
+    })
+</script>
+</body>
+</html>
