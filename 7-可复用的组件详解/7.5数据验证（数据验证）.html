@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component :a="a" :b="b" :c="c" :d="d" :f="f" :g="g"></my-component>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            a: '1',
+            b: 444,
+            c: true,
+            d: 12345,
+            e: [],
+            f: 88,
+            g: console.log()
+        },
+        components: {
+            'my-component': {
+                props: {
+                    a: String,
+                    b: [String, Number],
+                    // c必须是布尔类型，默认值是true，有以下几个选项：type-required-default
+                    c: {
+                        type: Boolean,
+                        default: true
+                    },
+                    d: {
+                        type: Number,
+                        required: true
+                    },
+                    e: {
+                        type: Array,
+                        default: function () {  // 如果不从父组件传e，那么就会取默认值
+                            return [666]
+                        }
+                    },
+
+                    // 自定义一个验证函数
+                    f: {
+                        validator: function (value) {
+                            return value > 10
+                        }
+                    },
+                    g: {
+                        type: Function
+                    }
+                },
+                template: '<div>{{a}} --- {{b}} --- {{c}} --- {{d}} --- {{e}} --- {{f}}</div>'
+            }
+        }
+    })
+</script>
+</body>
+</html>

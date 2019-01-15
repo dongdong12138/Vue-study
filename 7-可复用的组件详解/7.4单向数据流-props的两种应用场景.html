@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单向数据流</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<!--应用场景1：将传递进来的数据作为初始值保存起来-->
+<div id="app">
+    <my-component msg="我是父组件传递来的问候"></my-component>
+</div>
+
+
+<!--应用场景2：改变传递进来的数据-->
+<!--需求：通过input中输入的数据直接改变div的宽度-->
+<div id="bpp">
+    <input type="text" v-model="width">
+    <bpp-component v-bind:width="width"></bpp-component>
+</div>
+
+<script>
+    // 应用场景1：将传递进来的数据作为初始值保存起来
+    // 注册组件
+    Vue.component('my-component', {
+        props: ['msg'],
+        template: '<div>{{msg}}</div>',
+        data: function () {
+            return {text: this.msg}     // props中的值可以通过this.xxx来获取
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {}
+    })
+
+
+    // 应用场景2：改变传递进来的数据
+    var bpp = new Vue({
+        el: '#bpp',
+        data: {
+            width: '100'
+        },
+        components: {
+            'bpp-component': {
+                props: ['width'],
+                template: '<div :style="style"></div>',
+                computed: {
+                    style: function () {
+                        return {
+                            width: this.width + 'px',
+                            height: '50px',
+                            background: 'red'
+                        }
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

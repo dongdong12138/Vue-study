@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!-- <myComponent></myComponent> -->  <!-- Unknown custom element: <mycomponent> 1.html中只能用短横线，不能用驼峰 -->
+    <my-component my-msg="我是董董董"></my-component>
+</div>
+
+<script>
+    // 命名规则：
+    var app = new Vue({
+        el: '#app',
+        data: {},
+        components: {
+            'myComponent': {
+                props: ['myMsg'],                // 4.可以使用驼峰，也可以使用-
+                template: '<div>{{abc}}</div>',  // 2.template中只能使用驼峰
+                data: function () {
+                    return {
+                        abc: this.myMsg          // 3.data中只能使用驼峰
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
