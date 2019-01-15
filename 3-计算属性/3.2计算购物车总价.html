@@ -40,7 +40,7 @@
                 for (var j = 0;j < this.package2.length; j ++) {
                     prices += this.package2[j].price * this.package2[j].count
                 }
-                return prices + '------' + app2.msg
+                return prices + '------' + app2.msg  // 后面接的是其他Vue实例的数据
             }
         }
     })
