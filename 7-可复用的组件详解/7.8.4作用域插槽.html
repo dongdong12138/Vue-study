@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component>
+        <!--<template slot="abc" slot-scope="prop">-->
+            <!--{{prop.text}}-->
+            <!--&lt;!&ndash;{{prop.name}}&ndash;&gt;    &lt;!&ndash; name属性拿不到，可以拿除了name以外的属性 &ndash;&gt;-->
+            <!--{{prop.dong}}-->
+        <!--</template>-->
+
+        <p slot="abc" slot-scope="prop">    <!-- 2.5.0版本之前，只能写在template标签中，之后，可以写在其他标签中 -->
+            {{prop.text}}
+            <!--{{prop.name}}-->
+            {{prop.dong}}
+        </p>
+    </my-component>
+</div>
+
+
+
+<script>
+    Vue.component('my-component', {
+        template: '<div>\
+                        <slot text="我是来自子组件的数据" dong="donghao" name="abc"></slot>\
+                   </div>'
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {}
+    })
+</script>
+</body>
+</html>

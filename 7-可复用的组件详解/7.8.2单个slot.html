@@ -19,12 +19,18 @@
 </head>
 <body>
 <div id="app">
-
+    <child-component>
+        <!--<p>我是父组件插入的内容</p>-->
+    </child-component>
 </div>
 
 <script>
-    Vue.component('my-component', {
-        template: '<div>我是一个组件</div>'
+    Vue.component('child-component', {
+        template: '<div>\
+                        <slot>\
+                            如果父组件没有插入内容，我就默认出现\
+                        </slot>\
+                   </div>'
     })
     var app = new Vue({
         el: '#app',

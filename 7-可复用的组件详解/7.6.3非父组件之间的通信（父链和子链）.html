@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child-component ref="child"></child-component> ---{{msg}}
+    <hr>
+    <button @click="getChildData">我是父组件按钮，我要拿到子组件内容</button>
+    ---{{fromchild}}
+</div>
+
+<script>
+    Vue.component('child-component', {
+        template: '<button @click="setFatherData">通过点击我修改父亲的数据</button>',
+        methods: {
+            setFatherData: function () {
+                this.$parent.msg = '数据已经修改了'    // 获取父组件
+            }
+        },
+        data: function () {
+            return {msg: '我是child中的msg'}
+        }
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            bus: new Vue(),  // bus中介
+            msg: '数据未修改',
+            fromchild: '还未拿到'
+        },
+        methods: {
+            getChildData: function () {
+                this.fromchild = this.$refs.child.msg
+            }
+        }
+    })
+</script>
+</body>
+</html>

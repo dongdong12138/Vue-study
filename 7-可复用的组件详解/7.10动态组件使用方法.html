@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <component :is="thisView"></component>       <!-- 这里要用v-bind绑定is -->
+    <button @click="handleView('A')">A</button>
+    <button @click="handleView('B')">B</button>
+    <button @click="handleView('C')">C</button>
+    <button @click="handleView('D')">D</button>
+</div>
+
+<script>
+    // 需求：通过点击不同的按钮切换不同的视图
+    Vue.component('A-component', {
+        template: '<div>我是A组件</div>'
+    })
+    Vue.component('B-component', {
+        template: '<div>我是B组件</div>'
+    })
+    Vue.component('C-component', {
+        template: '<div>我是C组件</div>'
+    })
+    Vue.component('D-component', {
+        template: '<div>我是D组件</div>'
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            thisView: 'A-component'
+        },
+        methods: {
+            handleView: function (tag) {
+                this.thisView = tag +'-component'
+            }
+        }
+    })
+</script>
+</body>
+</html>
