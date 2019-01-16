@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    获取焦点：<input type="text" v-focus> <br>
+
+    <hr>
+
+    <div v-shufen:dongdong.a.b.c="obq"></div>
+
+
+</div>
+
+<script>
+    // 自定义指令
+    Vue.directive('focus', {
+        // 指令的选项
+        inserted: function (el) {  // inserted选项：插入到父节点的时候调用
+            el.focus()
+        }
+    })
+
+    Vue.directive('shufen', {
+        bind: function (el, binding, vnode) {     // bind选项：指令第一次绑定到元素时调用，只调用一次
+            var keys = []
+            for (var key in vnode) {
+                keys.push(key)
+            }
+            el.innerHTML =
+                    'name' + '---' + binding.name + '<br>' +
+                    'value' + '---' + binding.value + '<br>' +
+                    'expression' + '---' + binding.expression + '<br>' +
+                    'argument' + '---' + binding.arg + '<br>' +
+                    'modifiers' + '---' + JSON.stringify(binding.modifiers) + '<br>' +
+                    'vnode中的keys' + '---' + keys.join("--") + '<br>'
+        }
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            abcde: '我是value',
+            obq: '我是自定义指令所绑定的值'
+        }
+    })
+</script>
+</body>
+</html>
