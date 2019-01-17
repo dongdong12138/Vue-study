@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child :level="level">
+        我是董董董
+    </child>
+</div>
+
+<script>
+    Vue.component('child', {
+        props: ['level'],
+        render: function (createElement) {
+            return createElement('h' + this.level, this.$slots.default)
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            level: 2
+        }
+    })
+</script>
+</body>
+</html>

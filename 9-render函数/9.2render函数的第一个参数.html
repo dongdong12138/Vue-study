@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child></child>
+</div>
+
+<script>
+    Vue.component('child', {
+        render: function (createElement) {  // render函数中第一个参数必选
+            // String类型：html标签
+            // Object类型：含有数据选项的对象
+            // Function类型：方法返回含有数据选项的对象
+
+//            return createElement('div')               // String
+
+//            return createElement({                    // Object
+//                template: '<div>锄禾日当午</div>'
+//            })
+
+            var domFun = function () {
+                return {
+                    template: '<div>汗滴禾下土</div>'
+                }
+            }
+            return createElement(domFun())
+        }
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {}
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="switchShow">click me</button> --{{show}}
+
+    <my-component :show="show">
+
+    </my-component>
+</div>
+
+<script>
+    // 需求：点击按钮，切换美女图片
+    Vue.component('my-component', {
+        props: ['show'],
+        render: function (createElement) {
+            var imgSrc;
+            if (this.show) {
+                imgSrc = '1.jpg'
+            } else {
+                imgSrc = '2.jpg'
+            }
+
+            return createElement('img', {
+                'attrs': {src: imgSrc},
+                'style': {width: '600px'}
+            })
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            show: false
+        },
+        methods: {
+            switchShow: function () {
+                this.show = !this.show
+            }
+        }
+    })
+</script>
+</body>
+</html>

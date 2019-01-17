@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #app {
+            border: 2px solid black;
+            width: 600px;
+            height: 300px;
+            font-weight: 700px;
+            font-size: 16px;
+            padding: 3px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component value="haha">
+
+    </my-component>
+</div>
+
+<script>
+    Vue.component('my-component', {
+        props: ['value'],
+        functional: true,   // 表示当前的vue实例无状态，无实例
+        render: function (createElement, context) {
+            return createElement('button', {
+                'on': {
+                    click: function () {
+                        console.log(context);
+                        console.log(context.parent);
+                        console.log(context.parent.msg);
+                        console.log(context.props.value);
+                    }
+                }
+            }, '点击我学习context')
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: '我是父组件的内容'
+        }
+    })
+</script>
+</body>
+</html>
